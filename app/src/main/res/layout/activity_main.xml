@@ -12,14 +12,130 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rollButton"
-        tools:layout_editor_absoluteY="24dp"
-        tools:layout_editor_absoluteX="251dp" />
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintHorizontal_bias="0.78" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton3"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton6"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton7"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintHorizontal_bias="0.87" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton4"
+        android:layout_marginTop="168dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="48dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton5"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton4"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginTop="144dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton6"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton5"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintHorizontal_bias="0.36"
+        android:layout_marginTop="168dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton7"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton8"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton8"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.100000024"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="40dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton9"
+        android:layout_marginStart="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageButton10"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton7"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="64dp"
+        app:layout_constraintLeft_toRightOf="@+id/imageButton9"
+        android:layout_marginLeft="64dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintHorizontal_bias="0.0" />
 
     <RadioGroup
         android:layout_width="88dp"
         android:layout_height="122dp"
         android:id="@+id/radioGroup"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,7 +143,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        app:layout_constraintHorizontal_bias="0.09">
+        app:layout_constraintHorizontal_bias="0.05">
 
         <RadioButton
             android:text="6"
@@ -57,68 +173,5 @@
             tools:layout_editor_absoluteX="33dp"
             android:layout_weight="1" />
     </RadioGroup>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="218dp"
-        android:id="@+id/imageButton3"
-        app:layout_constraintRight_toLeftOf="@+id/imageButton4"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="218dp"
-        android:id="@+id/imageButton4"
-        app:layout_constraintRight_toLeftOf="@+id/imageButton5"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="218dp"
-        android:id="@+id/imageButton5"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintHorizontal_bias="0.9" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="318dp"
-        android:id="@+id/imageButton6"
-        app:layout_constraintRight_toLeftOf="@+id/imageButton7"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="318dp"
-        android:id="@+id/imageButton7"
-        app:layout_constraintRight_toLeftOf="@+id/imageButton8"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteX="268dp"
-        android:id="@+id/imageButton8"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
 
 </android.support.constraint.ConstraintLayout>
