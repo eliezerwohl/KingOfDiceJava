@@ -1,5 +1,6 @@
 package com.example.eliezerwohl.kingofdice;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,34 +10,21 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.Random;
+
 import static android.R.attr.button;
 import static android.R.attr.id;
 import static android.R.attr.tag;
 
 public class MainActivity extends AppCompatActivity {
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.radio6:
-                if (checked)
-                    Log.d("SWITCH", "GOT 6");
-                break;
-            case R.id.radio7:
-                if (checked)
-                    Log.d("SWITCH", "GOT 7");
-                break;
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button rollButton = (Button) findViewById(R.id.rollButton);
-
+//        ImageResouce building = (Drawable)
 
       final  ImageButton image1 = (ImageButton) findViewById(R.id.image1);
        final ImageButton image2 = (ImageButton) findViewById(R.id.image2);
@@ -47,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
        final ImageButton image7 = (ImageButton) findViewById(R.id.image7);
        final ImageButton image8 = (ImageButton) findViewById(R.id.image8);
        final ImageButton[] buttonIDs = new ImageButton[] {image1, image2,image2,image3,image4, image5, image6, image7, image8 };
+       final int[] images = new int[]{ R.drawable.heart,  R.drawable.building,  R.drawable.hand,  R.drawable.lightning,  R.drawable.skull,  R.drawable.star};
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 for(int i=0; i<buttonIDs.length; i++) {
@@ -55,17 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     else {
-                        temp.setImageResource(R.drawable.building);
+                        Random rand = new Random();
+                        int randomIndex = rand.nextInt(images.length);
+                        temp.setImageResource(images[randomIndex]);
                     }
-
 
                 }
             }
         });
-//        for(int i=0; i<buttonIDs.length; i++) {
-//            Button b = (Button) findViewById(buttonIDs[i]);
-//            b.setOnClickListener(this);
-//        }
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
