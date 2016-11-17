@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton image8;
     private RadioButton radio6;
     private Dice dice = new Dice();
-
-    private ImageButton[] buttonIDs = new ImageButton[]{image1, image2, image3, image4, image5, image6, image7, image8};
+   // private ImageButton[] buttonIDs = new ImageButton[]{image1, image2, image3, image4, image5, image6, image7, image8};
     private int[] buttonId = new int[]{R.id.image1, R.id.image2, R.id.image3, R.id.image4, R.id.image5, R.id.image6, R.id.image7, R.id.image8};
     private int[] savedImages = new int[8];
     private float[] buttonAlpha = new float[8];
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
 
         for (int i = 0; i < buttonId.length; i++) {
-//            savedImages[i] = buttonIDs[i].getResources().getDrawable( );
             ImageButton tempButton = (ImageButton) findViewById(buttonId[i]);
             String test = (tempButton.getTag()).toString();
             buttonAlpha[i] = tempButton.getAlpha();
@@ -92,10 +90,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int id = view.getId();
-                if (view.getAlpha() == 0.5f) {
+                if (view.getAlpha() == 0.7f) {
                     view.setAlpha(1.0f);
                 } else {
-                    view.setAlpha(0.5f);
+                    view.setAlpha(0.7f);
                 }
             }
         };
@@ -122,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             click.roll(images, buttonIDs);
-
         }
     }
 }
