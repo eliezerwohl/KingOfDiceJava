@@ -25,11 +25,11 @@ public class Click {
     public void reset(ImageButton[] buttonIDs, RadioButton radio6, ImageButton image7, ImageButton image8){
         for(int i=0; i<buttonIDs.length; i++) {
             ImageButton temp = buttonIDs[i];
-            temp.setAlpha(0.5f);
+            temp.setAlpha(0.7f);
         }
        radio6.setChecked(true);
-        image7.setAlpha(0.5f);
-        image8.setAlpha(0.5f);
+        image7.setAlpha(0.7f);
+        image8.setAlpha(0.7f);
         image7.setVisibility(View.INVISIBLE);
         image8.setVisibility(View.INVISIBLE);
     }
