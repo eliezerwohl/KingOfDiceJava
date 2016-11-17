@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton[] buttonIDs = new ImageButton[]{image1, image2, image3, image4, image5, image6, image7, image8};
     private int[] buttonId = new int[]{R.id.image1, R.id.image2, R.id.image3, R.id.image4, R.id.image5, R.id.image6, R.id.image7, R.id.image8};
     private int[] savedImages = new int[8];
+    private float[] buttonAlpha = new float[8];
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -35,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
 //            savedImages[i] = buttonIDs[i].getResources().getDrawable( );
             ImageButton tempButton = (ImageButton) findViewById(buttonId[i]);
             String test = (tempButton.getTag()).toString();
-            Log.d("This", test);
+            buttonAlpha[i] = tempButton.getAlpha();
             savedImages[i] = Integer.parseInt(test);
         }
         outState.putIntArray("IMAGES_DATA", savedImages);
+        outState.putFloatArray("ALPHA_DATA", buttonAlpha);
         outState.putInt("DICE_COUNT", dice.getCurrentCount());
         super.onSaveInstanceState(outState);
     }
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button rollButton = (Button) findViewById(R.id.rollButton);
         final ImageButton[] buttonIDs = new ImageButton[]{image1, image2, image2, image3, image4, image5, image6, image7, image8};
-
 
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -109,11 +110,12 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             super.onRestoreInstanceState(savedInstanceState);
             savedImages = savedInstanceState.getIntArray("IMAGES_DATA");
+           buttonAlpha = savedInstanceState.getFloatArray("ALPHA_DATA");
             for (int i = 0; i < buttonId.length; i++) {
                 ImageButton tempButton = (ImageButton) findViewById(buttonId[i]);
+                tempButton.setAlpha(buttonAlpha[i]);
                 tempButton.setImageResource(savedImages[i]);
                 tempButton.setTag(Integer.toString(savedImages[i]));
-
             }
             dice.setCurrentCount(savedInstanceState.getInt("DICE_COUNT"));
             dice.displayDice(image7, image8, dice.getCurrentCount());
@@ -122,6 +124,5 @@ public class MainActivity extends AppCompatActivity {
             click.roll(images, buttonIDs);
 
         }
-
     }
 }
