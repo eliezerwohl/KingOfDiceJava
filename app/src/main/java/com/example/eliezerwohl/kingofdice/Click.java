@@ -18,6 +18,7 @@ public class Click {
                 Random rand = new Random();
                 int randomIndex = rand.nextInt(images.length);
                 temp.setImageResource(images[randomIndex]);
+                temp.setTag(Integer.toString(images[randomIndex]));
             }
         }
     }
