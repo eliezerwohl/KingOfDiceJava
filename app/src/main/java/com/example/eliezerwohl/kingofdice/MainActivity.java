@@ -3,10 +3,10 @@ package com.example.eliezerwohl.kingofdice;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton image5 = (ImageButton) findViewById(R.id.image5);
         ImageButton image6 = (ImageButton) findViewById(R.id.image6);
         final ImageButton image7 = (ImageButton) findViewById(R.id.image7);
+        final RadioButton radio6 = (RadioButton) findViewById(R.id.radio6);
         final ImageButton image8 = (ImageButton) findViewById(R.id.image8);
         final ImageButton[] buttonIDs = new ImageButton[]{image1, image2, image2, image3, image4, image5, image6, image7, image8};
         final int[] images = new int[]{R.drawable.heart, R.drawable.building, R.drawable.hand, R.drawable.lightning, R.drawable.skull, R.drawable.star};
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dice.displayDice(image7, image8);
                 click.roll(images, buttonIDs);
+            }
+        });
+        Button reset = (Button)findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.reset(buttonIDs, radio6, image7, image8);
             }
         });
 

@@ -5,9 +5,6 @@ package com.example.eliezerwohl.kingofdice;
         import android.widget.ImageButton;
         import android.widget.RadioGroup;
 
-        import static com.example.eliezerwohl.kingofdice.R.id.image7;
-        import static com.example.eliezerwohl.kingofdice.R.id.image8;
-
 /**
  * Created by Elie on 11/16/2016.
  */
@@ -24,10 +21,13 @@ public class Dice {
             case 6:
                 image7.setVisibility(View.INVISIBLE);
                 image8.setVisibility(View.INVISIBLE);
+                image7.setAlpha(0.5f);
+                image8.setAlpha(0.5f);
                 break;
             case 7:
                 image7.setVisibility(View.VISIBLE);
                 image8.setVisibility(View.INVISIBLE);
+                image8.setAlpha(0.5f);
                 break;
             case 8:
                 image7.setVisibility(View.VISIBLE);
