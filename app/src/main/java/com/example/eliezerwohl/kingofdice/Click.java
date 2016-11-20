@@ -2,7 +2,6 @@ package com.example.eliezerwohl.kingofdice;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-
 import java.util.Random;
 
 /**
@@ -13,7 +12,6 @@ public class Click {
     public void roll(int[] images, ImageButton[] buttonIDs){
         for(int i=0; i<buttonIDs.length; i++) {
             ImageButton temp = buttonIDs[i];
-
             if (temp.getAlpha() != 1.0f) {
                 Random rand = new Random();
                 int randomIndex = rand.nextInt(images.length);
