@@ -42,8 +42,6 @@ public class Dice {
         }
     }
 
-
-
     public void setDiceCount(int view) {
         switch (view) {
             case R.id.radio6:
