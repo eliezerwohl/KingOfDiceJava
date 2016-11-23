@@ -1,5 +1,10 @@
 package com.example.eliezerwohl.kingofdice;
 
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -8,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import static com.example.eliezerwohl.kingofdice.R.id.image1;
 import static com.example.eliezerwohl.kingofdice.R.id.image2;
@@ -16,7 +22,7 @@ import static com.example.eliezerwohl.kingofdice.R.id.image4;
 import static com.example.eliezerwohl.kingofdice.R.id.image5;
 import static com.example.eliezerwohl.kingofdice.R.id.image6;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private ImageButton image7;
     private ImageButton image8;
     private RadioButton radio6;
@@ -24,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private int[] buttonId = new int[]{image1, image2, image3, image4, image5, image6, R.id.image7, R.id.image8};
     private int[] savedImages = new int[8];
     private float[] buttonAlpha = new float[8];
+    private SensorManager sensorManager;
+    private boolean color = false;
+    private View view;
+    private long lastUpdate;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -45,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lastUpdate = System.currentTimeMillis();
         final Click click = new Click();
         final int[] images = new int[]{R.drawable.heart, R.drawable.building, R.drawable.hand, R.drawable.lightning, R.drawable.skull, R.drawable.star};
 
@@ -118,4 +130,54 @@ public class MainActivity extends AppCompatActivity {
             click.roll(images, buttonIDs);
         }
     }
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            getAccelerometer(event);
+        }
+
+    }
+
+    private void getAccelerometer(SensorEvent event) {
+        float[] values = event.values;
+        // Movement
+        float x = values[0];
+        float y = values[1];
+        float z = values[2];
+
+        float accelationSquareRoot = (x * x + y * y + z * z)
+                / (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
+        long actualTime = event.timestamp;
+        if (accelationSquareRoot >= 2) //
+        {
+            if (actualTime - lastUpdate < 200) {
+                return;
+            }
+            lastUpdate = actualTime;
+            Toast.makeText(this, "Device was shuffed", Toast.LENGTH_SHORT)
+                    .show();
+
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // register this class as a listener for the orientation and
+        // accelerometer sensors
+        sensorManager.registerListener(this,
+                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+    }
+    @Override
+    protected void onPause() {
+        // unregister listener
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
 }
