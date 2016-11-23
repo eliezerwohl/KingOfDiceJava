@@ -31,4 +31,10 @@ public class Click {
         image7.setVisibility(View.INVISIBLE);
         image8.setVisibility(View.INVISIBLE);
     }
+    public void reset(ImageButton[] buttonIDs){
+        for(int i=0; i<buttonIDs.length; i++) {
+            ImageButton temp = buttonIDs[i];
+            temp.setAlpha(0.7f);
+        }
+    }
 }
