@@ -1,6 +1,5 @@
 package com.example.eliezerwohl.kingofdice;
 
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import static com.example.eliezerwohl.kingofdice.R.id.image1;
 import static com.example.eliezerwohl.kingofdice.R.id.image2;
@@ -23,6 +21,10 @@ import static com.example.eliezerwohl.kingofdice.R.id.image5;
 import static com.example.eliezerwohl.kingofdice.R.id.image6;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        //nothing here
+    }
     private ImageButton image7;
     private ImageButton image8;
     private RadioButton radio6;
@@ -30,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private int[] buttonId = new int[]{image1, image2, image3, image4, image5, image6, R.id.image7, R.id.image8};
     private int[] savedImages = new int[8];
     private float[] buttonAlpha = new float[8];
-    private SensorManager sensorManager;
-    private boolean color = false;
-    private View view;
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private ShakeDetector mShakeDetector;
+
     private long lastUpdate;
 
     @Override
@@ -53,10 +56,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        lastUpdate = System.currentTimeMillis();
         final Click click = new Click();
         final int[] images = new int[]{R.drawable.heart, R.drawable.building, R.drawable.hand, R.drawable.lightning, R.drawable.skull, R.drawable.star};
 
@@ -75,9 +77,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                dice.displayDice(image7, image8, dice.getDiceCount());
-                click.roll(images, buttonIDs);
-                dice.setCurrentCount(dice.getDiceCount());
+                rollDice(click, images, buttonIDs);
             }
         });
         Button reset = (Button) findViewById(R.id.reset);
@@ -129,36 +129,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         else {
             click.roll(images, buttonIDs);
         }
-    }
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            getAccelerometer(event);
-        }
-
-    }
-
-    private void getAccelerometer(SensorEvent event) {
-        float[] values = event.values;
-        // Movement
-        float x = values[0];
-        float y = values[1];
-        float z = values[2];
-
-        float accelationSquareRoot = (x * x + y * y + z * z)
-                / (SensorManager.GRAVITY_EARTH * SensorManager.GRAVITY_EARTH);
-        long actualTime = event.timestamp;
-        if (accelationSquareRoot >= 2) //
-        {
-            if (actualTime - lastUpdate < 200) {
-                return;
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {
+            @Override
+            public void onShake() {
+                rollDice(click, images, buttonIDs);
             }
-            lastUpdate = actualTime;
-            Toast.makeText(this, "Device was shuffed", Toast.LENGTH_SHORT)
-                    .show();
+        });
 
-        }
     }
+
+    private void rollDice(Click click, int[] images, ImageButton[] buttonIDs) {
+        dice.displayDice(image7, image8, dice.getDiceCount());
+        click.roll(images, buttonIDs);
+        dice.setCurrentCount(dice.getDiceCount());
+    }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -169,15 +156,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onResume();
         // register this class as a listener for the orientation and
         // accelerometer sensors
-        sensorManager.registerListener(this,
-                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
     @Override
     protected void onPause() {
         // unregister listener
         super.onPause();
-        sensorManager.unregisterListener(this);
+        mSensorManager.unregisterListener(mShakeDetector);
     }
 
 }
