@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import static com.example.eliezerwohl.kingofdice.R.id.rollButton;
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {}
@@ -26,9 +28,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private int[] currentArray;
     private Click click = new Click();
     private  ImageButton[] buttonIDs;
-    private ImageButton image7 = (ImageButton) findViewById(R.id.image7);
-    private ImageButton image8 = (ImageButton) findViewById(R.id.image8);
-    private RadioButton radio6 = (RadioButton) findViewById(R.id.radio6);
+    private ImageButton image7;
+    private ImageButton image8;
+    private RadioButton radio6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ImageButton  image4 = (ImageButton) findViewById(R.id.image4);
         ImageButton  image5 = (ImageButton) findViewById(R.id.image5);
         ImageButton  image6 = (ImageButton) findViewById(R.id.image6);
+        image7 = (ImageButton) findViewById(R.id.image7);
+        image8 = (ImageButton) findViewById(R.id.image8);
+        radio6 =  (RadioButton) findViewById(R.id.radio6);
         Button rollButton = (Button) findViewById(R.id.rollButton);
         buttonIDs = new ImageButton[]{image1, image2, image2, image3, image4, image5, image6, image7, image8};
         rollButton.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        String selected;
         if (id == R.id.kingDice){
             currentArray = kingImages;
             click.reset(buttonIDs);
