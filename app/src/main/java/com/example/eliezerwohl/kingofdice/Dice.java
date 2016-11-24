@@ -8,7 +8,7 @@ package com.example.eliezerwohl.kingofdice;
  * Created by Elie on 11/16/2016.
  */
 
-public class Dice {
+public class Dice  {
     private int diceCount = 6;
     private int currentCount = 6;
 
