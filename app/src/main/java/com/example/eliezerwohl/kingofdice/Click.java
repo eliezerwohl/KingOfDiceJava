@@ -25,7 +25,7 @@ public class Click {
             ImageButton temp = buttonIDs[i];
             temp.setAlpha(0.7f);
         }
-       radio6.setChecked(true);
+        radio6.setChecked(true);
         image7.setAlpha(0.7f);
         image8.setAlpha(0.7f);
         image7.setVisibility(View.INVISIBLE);
